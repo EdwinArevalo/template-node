@@ -3,7 +3,7 @@ const app = express();
 const router = express.Router();
 
 const path = __dirname + '/views/';
-const port = 90;
+app.set('port', process.env.PORT|| 3000);
 
 router.use(function (req,res,next) {
   console.log('/' + req.method);
@@ -17,6 +17,6 @@ router.get('/', function(req,res){
 app.use(express.static(path));
 app.use('/', router);
 
-app.listen(port, function () {
-  console.log('Listen on port 90!')
+app.listen( app.get('port') , function () {
+  console.log('Listen on port ',app.get('port'))
 })
